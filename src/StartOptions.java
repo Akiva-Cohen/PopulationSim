@@ -7,6 +7,11 @@ public class StartOptions extends JPanel {
     JTextField adult;
     JTextField child;
     boolean listen;
+    public static final int TOTAL_BEFORE = 1;
+    public static final int ADULT_BEFORE = 2;
+    public static final int CHILD_BEFORE = 3;
+    int previousEdit = 0;
+    int previousPrevious = 0;
     public StartOptions() {
         super(new GridLayout(2,3));
         listen = true;
@@ -23,7 +28,8 @@ public class StartOptions extends JPanel {
             public void updater() {
                 if (listen) {
                     listen = false;
-                    //update text
+                    //setFromTotal();
+                    updatePrevious(TOTAL_BEFORE);
                     listen = true;
                 }
             }
@@ -33,6 +39,7 @@ public class StartOptions extends JPanel {
                 if (listen) {
                     listen = false;
                     //update text
+                    updatePrevious(ADULT_BEFORE);
                     listen =true;
                 }
             }
@@ -42,18 +49,52 @@ public class StartOptions extends JPanel {
                 if (listen) {
                     listen = false;
                     //update text
+                    updatePrevious(CHILD_BEFORE);
                     listen = true;
                 }
             }
         });
     }
 
+    public void updateFromTotal() {
+        if (hasTotal()) {
+            int use = getUsePrevious(TOTAL_BEFORE);
+            
+        }
+    }
+    public void updateFromChild() {
+        if (hasChild()) {
+            int previous = getChild();
+            int use = getUsePrevious(CHILD_BEFORE);
+        }
+    }
+    public void updateFromAdult() {
+        if (hasAdult()) {
+            int use = getUsePrevious(ADULT_BEFORE);
+        }
+    }
+
+    public int getUsePrevious(int id) {
+        if (previousEdit == id) {
+            return previousPrevious;
+        } else {
+            return previousEdit;
+        }
+    }
+
+    public void updatePrevious(int id) {
+        if (id != previousEdit) {
+            previousPrevious = previousEdit;
+            previousEdit = id;
+        }
+    }
     public boolean inCheck() {
         if (hasAdult() && hasChild() && hasTotal() && getTotal() == getChild() + getAdult()) {
             return true;
         }
         return false;
     }
+
     public int getTotal(){
         return getNumFromField(total);
     }
