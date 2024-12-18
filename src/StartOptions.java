@@ -100,7 +100,7 @@ public class StartOptions extends JPanel {
     public boolean replaceTotal() {
         if (hasAdult() && hasChild()) {
             int newTotal = getAdult() + getChild();
-            adult.setText(Integer.toString(newTotal));
+            total.setText(Integer.toString(newTotal));
             return true;
         } else {
             return false;
