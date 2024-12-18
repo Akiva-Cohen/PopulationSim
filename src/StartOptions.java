@@ -28,7 +28,7 @@ public class StartOptions extends JPanel {
             public void updater() {
                 if (listen) {
                     listen = false;
-                    //setFromTotal();
+                    updateFromTotal();
                     updatePrevious(TOTAL_BEFORE);
                     listen = true;
                 }
@@ -38,7 +38,7 @@ public class StartOptions extends JPanel {
             public void updater() {
                 if (listen) {
                     listen = false;
-                    //update text
+                    updateFromAdult();
                     updatePrevious(ADULT_BEFORE);
                     listen =true;
                 }
@@ -48,7 +48,7 @@ public class StartOptions extends JPanel {
             public void updater() {
                 if (listen) {
                     listen = false;
-                    //update text
+                    updateFromChild();
                     updatePrevious(CHILD_BEFORE);
                     listen = true;
                 }
@@ -59,18 +59,70 @@ public class StartOptions extends JPanel {
     public void updateFromTotal() {
         if (hasTotal()) {
             int use = getUsePrevious(TOTAL_BEFORE);
-            
+            replaceWithTwo(TOTAL_BEFORE, use, false);
         }
     }
     public void updateFromChild() {
         if (hasChild()) {
-            int previous = getChild();
             int use = getUsePrevious(CHILD_BEFORE);
+            replaceWithTwo(CHILD_BEFORE, use, false);
         }
     }
     public void updateFromAdult() {
         if (hasAdult()) {
             int use = getUsePrevious(ADULT_BEFORE);
+            replaceWithTwo(ADULT_BEFORE, use, false);
+        }
+    }
+
+    public void replaceWithTwo(int mine, int use, boolean repeat) {
+        if (mine != TOTAL_BEFORE && use != TOTAL_BEFORE) {
+            if (!replaceTotal()) {
+                if (!repeat) {
+                    replaceWithTwo(mine, TOTAL_BEFORE, true);
+                }
+            }
+        } else if (mine != ADULT_BEFORE && use != ADULT_BEFORE) {
+            if (!replaceAdult()) {
+                if (!repeat) {
+                    replaceWithTwo(mine, ADULT_BEFORE, true);
+                }
+            }
+        } else if (mine != CHILD_BEFORE && use != CHILD_BEFORE) {
+            if (!replaceChild()) {
+                if (!repeat) {
+                    replaceWithTwo(mine, CHILD_BEFORE, true);
+                }
+            }
+        }
+    }
+
+    public boolean replaceTotal() {
+        if (hasAdult() && hasChild()) {
+            int newTotal = getAdult() + getChild();
+            adult.setText(Integer.toString(newTotal));
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean replaceAdult() {
+        if (hasTotal() && hasChild() && getTotal() >= getChild()) {
+            int newAdult = getTotal() - getChild();
+            adult.setText(Integer.toString(newAdult));
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+    public boolean replaceChild() {
+        if (hasTotal() && hasAdult() && getTotal() >= getAdult()) {
+            int newChild = getTotal() - getAdult();
+            child.setText(Integer.toString(newChild));
+            return true;
+        } else {
+            return false;
         }
     }
 
