@@ -5,6 +5,6 @@ public class SetupPop extends JOptionPane{
         //add(new StartOptions());
     }
     public void start() {
-        showConfirmDialog(null, new StartOptions());
+        showConfirmDialog(null, new StartOptions(),"Choose Population Atributes",JOptionPane.OK_CANCEL_OPTION);
     }
 }

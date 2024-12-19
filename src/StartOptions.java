@@ -192,7 +192,7 @@ public class StartOptions extends JPanel {
             return false;
         }
     }
-    public int getNumFromField(JTextField field) {
+    public static int getNumFromField(JTextField field) {
         int x;
         try {
             x = Integer.parseInt(field.getText());
