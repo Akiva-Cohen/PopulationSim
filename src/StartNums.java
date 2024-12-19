@@ -5,8 +5,14 @@ public class StartNums extends JPanel {
     JTextField children;
     boolean listen;
     public StartNums() {
-        super(new GridLayout(2,2))
+        super(new GridLayout(2,2));
         listen = true;
+        add(new JLabel("Starting Adults"));
+        add(new JLabel("Starting Children"));
+        adults = new JTextField("0");
+        children = new JTextField("0");
+        add(adults);
+        add(children);
     }
 
 
