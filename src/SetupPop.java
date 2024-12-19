@@ -36,6 +36,7 @@ public class SetupPop extends JOptionPane{
                 children = counts.getChildren();
                 factor = counts.getFactor();
                 Run run = new Run(adultSpan,childSpan,adults,children,factor);
+                run.run();
             } else {
                 if (spans.hasAdult()) {
                     adultSpan = spans.getAdult();
