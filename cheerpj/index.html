@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>
+            Population Growth Sim
+        </title>
+        <script src="https://cjrtnc.leaningtech.com/3.0/cj3loader.js"></script>
+    </head>
+    <body>
+        <script>
+            (async function () {
+                await cheerpjInit();
+                cheerpjCreateDisplay(window.innerWidth,window.innerHeight);
+                await cheerpjRunJar("/app/PopulationSim.jar")
+            })();
+        </script>
+    </body>
+</html>
