@@ -3,16 +3,23 @@ import java.awt.*;
 public class StartNums extends JPanel {
     JTextField adults;
     JTextField children;
+    JTextField factor;
     boolean listen;
-    public StartNums() {
-        super(new GridLayout(2,2));
+    public StartNums(int adultsI, int childrenI, int factorI) {
+        super(new GridLayout(2,3));
         listen = true;
         add(new JLabel("Starting Adults"));
         add(new JLabel("Starting Children"));
-        adults = new JTextField("0");
-        children = new JTextField("0");
+        add(new JLabel("Children Per Couple"));
+        adults = new JTextField(Integer.toString(adultsI));
+        children = new JTextField(Integer.toString(childrenI));
+        factor = new JTextField(Integer.toString(factorI));
         add(adults);
         add(children);
+        add(factor);
+    }
+    public StartNums() {
+        this(0,0,1);
     }
 
 
@@ -40,11 +47,26 @@ public class StartNums extends JPanel {
             return false;
         }
     }
+    public boolean hasFactor() {
+        try {
+            int x = getFactor();
+            if (x >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (IllegalAccessError e) {
+            return false;
+        }
+    }
 
     public int getAdults() {
         return StartOptions.getNumFromField(adults);
     }
     public int getChildren() {
         return StartOptions.getNumFromField(children);
+    }
+    public int getFactor() {
+        return StartOptions.getNumFromField(factor);
     }
 }

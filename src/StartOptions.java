@@ -13,14 +13,17 @@ public class StartOptions extends JPanel {
     int previousEdit = 0;
     int previousPrevious = 0;
     public StartOptions() {
+        this(0,0,0);
+    }
+    public StartOptions(int totalI, int adultI, int childI) {
         super(new GridLayout(2,3));
         listen = true;
         add(new JLabel("Total lifespan"));
         add(new JLabel("Adulthood Length"));
         add(new JLabel("Childhood length"));
-        total = new JTextField("0");
-        adult = new JTextField("0");
-        child = new JTextField("0");
+        total = new JTextField(Integer.toString(totalI));
+        adult = new JTextField(Integer.toString(adultI));
+        child = new JTextField(Integer.toString(childI));
         add(total);
         add(adult);
         add(child);
