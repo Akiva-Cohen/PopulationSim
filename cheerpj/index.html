@@ -9,7 +9,7 @@
     <body>
         <script>
             (async function () {
-                await cheerpjInit();
+                await cheerpjInit({preloadResources:{"/app/blahaj.png":[0],"/app/smolhaj.png":[0]}});
                 cheerpjCreateDisplay(window.innerWidth,window.innerHeight);
                 await cheerpjRunJar("/app/PopulationSim.jar")
             })();
