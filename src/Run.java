@@ -51,8 +51,8 @@ public class Run {
         main.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel panel = new JPanel(new GridLayout(2,1));
         JPanel top = new JPanel(new GridLayout(1,2));
-        top.add(new JLabel(new ImageIcon(new ImageIcon("blahaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
-        top.add(new JLabel(new ImageIcon(new ImageIcon("smolhaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
+        top.add(new JLabel(new ImageIcon(new ImageIcon("/app/blahaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
+        top.add(new JLabel(new ImageIcon(new ImageIcon("/app/smolhaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
         panel.add(top);
         JPanel middle = new JPanel(new GridLayout(2, 2));
         middle.add(adults);
