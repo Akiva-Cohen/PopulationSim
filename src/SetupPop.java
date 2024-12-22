@@ -56,7 +56,15 @@ public class SetupPop extends JOptionPane{
                 SetupPop redo = new SetupPop(adultSpan,childSpan,adults,children,factor);
                 redo.start();
             }
-            
+        }
+    }
+
+
+    public static boolean stableMode(JFrame main) {
+        if (showConfirmDialog(main, "Blåhaj population has stabilized and will not continue to change. \nQuit program?", "", YES_NO_OPTION) == YES_OPTION) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

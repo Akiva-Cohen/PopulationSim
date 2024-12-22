@@ -15,7 +15,9 @@ public class Run {
     JButton next;
     JTextField turnF;
     int turns;
+    boolean popWarn;
     public Run(int adultSpan, int childSpan, int adults, int children, int factor) {
+        popWarn = true;
         adultArr = new int[adultSpan];
         childArr = new int[childSpan];
         int mainAdult = adults / adultSpan;
@@ -39,7 +41,7 @@ public class Run {
         this.factor = factor;
         this.adults = new JTextField(Integer.toString(adults) + " Blåhajar");
         this.adults.setEditable(false);
-        this.children = new JTextField(Integer.toString(children) + " Smolhåjar");
+        this.children = new JTextField(Integer.toString(children) + " Smolhajar");
         this.children.setEditable(false);
         next = new JButton("Simulate One turn");
         turns = 0;
@@ -65,7 +67,13 @@ public class Run {
         main.setVisible(true);
         next.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                incrementAndCheck();
+                if (incrementAndCheck() && popWarn) {
+                    if (SetupPop.stableMode(main)) {
+                        main.dispose();
+                    } else {
+                        popWarn = false;
+                    }
+                }
             }
         });
     }
