@@ -51,8 +51,8 @@ public class Run {
         main.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel panel = new JPanel(new GridLayout(2,1));
         JPanel top = new JPanel(new GridLayout(1,2));
-        top.add(new JLabel(new ImageIcon(new ImageIcon("/app/blahaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
-        top.add(new JLabel(new ImageIcon(new ImageIcon("/app/smolhaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
+        top.add(new JLabel(new ImageIcon(new ImageIcon("app/blahaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
+        top.add(new JLabel(new ImageIcon(new ImageIcon("app/smolhaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
         panel.add(top);
         JPanel middle = new JPanel(new GridLayout(2, 2));
         middle.add(adults);
@@ -65,9 +65,19 @@ public class Run {
         main.setVisible(true);
         next.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                increment();
+                incrementAndCheck();
             }
         });
+    }
+    public boolean incrementAndCheck() {
+        int[] previousChildren = childArr;
+        int[] previousAdults = adultArr;
+        increment();
+        if (checkIntArrs(previousChildren, childArr) && checkIntArrs(previousAdults, adultArr)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public void increment() {
         int[] outChildren = new int[childArr.length];
@@ -87,6 +97,19 @@ public class Run {
         turns++;
         turnF.setText(Integer.toString(turns) + " Turns");
     }
+
+    public boolean checkIntArrs(int[] one, int[] two) {
+        if (one.length != two.length) {
+            return false;
+        }
+        for (int i = 0; i < one.length; i++) {
+            if (one[i] != two[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     public int sumArray(int[] arr) {
         int out = 0;
         for (int i : arr) {

@@ -13,7 +13,7 @@ public class StartOptions extends JPanel {
     int previousEdit = 0;
     int previousPrevious = 0;
     public StartOptions() {
-        this(0,0,0);
+        this(2,1,1);
     }
     public StartOptions(int totalI, int adultI, int childI) {
         super(new GridLayout(2,3));
@@ -110,7 +110,7 @@ public class StartOptions extends JPanel {
         }
     }
     public boolean replaceAdult() {
-        if (hasTotal() && hasChild() && getTotal() >= getChild()) {
+        if (hasTotal() && hasChild() && getTotal() > getChild()) {
             int newAdult = getTotal() - getChild();
             adult.setText(Integer.toString(newAdult));
             return true;
@@ -120,7 +120,7 @@ public class StartOptions extends JPanel {
 
     }
     public boolean replaceChild() {
-        if (hasTotal() && hasAdult() && getTotal() >= getAdult()) {
+        if (hasTotal() && hasAdult() && getTotal() > getAdult()) {
             int newChild = getTotal() - getAdult();
             child.setText(Integer.toString(newChild));
             return true;
@@ -171,7 +171,7 @@ public class StartOptions extends JPanel {
     public boolean hasAdult() {
         try {
             int x = getAdult();
-            if (x >= 0) {
+            if (x >= 1) {
                 return true;
             } else {
                 return false;
@@ -186,7 +186,7 @@ public class StartOptions extends JPanel {
     public boolean hasChild() {
         try {
             int x = getChild();
-            if (x >= 0) {
+            if (x >= 1) {
                 return true;
             } else {
                 return false;
