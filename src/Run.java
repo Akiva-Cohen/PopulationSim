@@ -1,4 +1,3 @@
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.*;
 import java.awt.*;
@@ -16,6 +15,8 @@ public class Run {
     JLabel turnF;
     int turns;
     boolean popWarn;
+    JTextField times;
+    JPanel inP;
     public Run(int adultSpan, int childSpan, int adults, int children, int factor) {
         popWarn = true;
         adultArr = new int[adultSpan];
@@ -41,7 +42,15 @@ public class Run {
         this.factor = factor;
         this.adults = new JLabel(Integer.toString(adults) + " Blåhajar");
         this.children = new JLabel(Integer.toString(children) + " Smolhajar");
-        next = new JButton("Simulate One turn");
+        next = new JButton();
+        inP = new JPanel();
+        times = new JTextField("1");
+        inP.add(new JLabel("Simulate "));
+        inP.add(times);
+        inP.add(new JLabel(" Turns"));
+        inP.setOpaque(false);
+        next.setLayout(new GridBagLayout());
+        next.add(inP);
         turns = 0;
         turnF = new JLabel("0 Turns");
     }
@@ -62,6 +71,11 @@ public class Run {
         main.add(panel);
         main.pack();
         main.setVisible(true);
+        times.getDocument().addDocumentListener(new DoDoc() {
+            public void updater() {
+                next.validate();
+            }
+        });
         next.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (incrementAndCheck() && popWarn) {
