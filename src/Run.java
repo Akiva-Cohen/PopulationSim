@@ -10,10 +10,10 @@ public class Run {
     int factor;
     int[] adultArr;
     int[] childArr;
-    JTextField adults;
-    JTextField children;
+    JLabel adults;
+    JLabel children;
     JButton next;
-    JTextField turnF;
+    JLabel turnF;
     int turns;
     boolean popWarn;
     public Run(int adultSpan, int childSpan, int adults, int children, int factor) {
@@ -39,19 +39,16 @@ public class Run {
             childArr[i] = set;
         }
         this.factor = factor;
-        this.adults = new JTextField(Integer.toString(adults) + " Blåhajar");
-        this.adults.setEditable(false);
-        this.children = new JTextField(Integer.toString(children) + " Smolhajar");
-        this.children.setEditable(false);
+        this.adults = new JLabel(Integer.toString(adults) + " Blåhajar");
+        this.children = new JLabel(Integer.toString(children) + " Smolhajar");
         next = new JButton("Simulate One turn");
         turns = 0;
-        turnF = new JTextField("0 Turns");
-        turnF.setEditable(false);
+        turnF = new JLabel("0 Turns");
     }
     public void run() {
         JFrame main = new JFrame("Population sim");
         main.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        JPanel panel = new JPanel(new GridLayout(2,1));
+        JPanel panel = new JPanel(new GridLayout(3,1));
         JPanel top = new JPanel(new GridLayout(1,2));
         top.add(new JLabel(new ImageIcon(new ImageIcon("app/blahaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
         top.add(new JLabel(new ImageIcon(new ImageIcon("app/smolhaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
