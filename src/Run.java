@@ -101,7 +101,6 @@ public class Run {
                 }
             }
         });
-
     }
 
     public void pressResult(JFrame main) {
