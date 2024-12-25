@@ -18,7 +18,6 @@ public class Run {
     JPanel inP;
     boolean counting;
     boolean running;
-    JButton start;
     public Run(int adultSpan, int childSpan, int adults, int children, int factor) {
         counting = false;
         running = false;
@@ -58,15 +57,14 @@ public class Run {
         turns = 0;
         turnF = new JLabel("0 Turns");
         delay = new IntField(10,1);
-        start = new JButton("Start/Stop");
     }
     public void run() {
         JFrame main = new JFrame("Population sim");
         main.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel panel = new JPanel(new GridLayout(2,1));
         JPanel top = new JPanel(new GridLayout(1,2));
-        top.add(new JLabel(new ImageIcon(new ImageIcon("app/blahaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
-        top.add(new JLabel(new ImageIcon(new ImageIcon("app/smolhaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
+        top.add(new JLabel(new ImageIcon(new ImageIcon("/app/blahaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
+        top.add(new JLabel(new ImageIcon(new ImageIcon("/app/smolhaj.png").getImage().getScaledInstance(200, 200, java.awt.Image.SCALE_SMOOTH))));
         panel.add(top);
         JPanel middle = new JPanel(new GridLayout(3, 2));
         middle.add(adults);
@@ -78,7 +76,6 @@ public class Run {
         delayP.add(delay);
         delayP.add(new JLabel("ms"));
         middle.add(delayP);
-        //middle.add(start);
         panel.add(middle);
         main.add(panel);
         main.pack();
