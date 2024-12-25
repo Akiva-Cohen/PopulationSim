@@ -16,7 +16,6 @@ public class IntField extends JFormattedTextField {
         try {
             commitEdit();
         } catch (ParseException e) {}
-        System.out.println(getValue());
         return (int)getValue();
     }
 }
