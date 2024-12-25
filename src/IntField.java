@@ -1,3 +1,5 @@
+import java.text.ParseException;
+
 import javax.swing.*;
 import javax.swing.text.*;
 public class IntField extends JFormattedTextField {
@@ -11,6 +13,10 @@ public class IntField extends JFormattedTextField {
         setText(Integer.toString(start));
     }
     public int getNumber() {
+        try {
+            commitEdit();
+        } catch (ParseException e) {}
+        System.out.println(getValue());
         return (int)getValue();
     }
 }
