@@ -16,6 +16,10 @@ public class Run {
     IntField times;
     IntField delay;
     JPanel inP;
+    JButton start;
+    boolean running;
+    Timer runer;
+    JFrame main;
     public Run(int adultSpan, int childSpan, int adults, int children, int factor) {
         popWarn = true;
         adultArr = new int[adultSpan];
@@ -53,9 +57,17 @@ public class Run {
         turns = 0;
         turnF = new JLabel("0 Turns");
         delay = new IntField(10,1);
+        runer = new Timer(10, null);
+        runer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ping();
+            }
+        });
+
     }
     public void run() {
-        JFrame main = new JFrame("Population sim");
+        running = false;
+        main = new JFrame("Population sim");
         main.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel panel = new JPanel(new GridLayout(2,1));
         JPanel top = new JPanel(new GridLayout(1,2));
@@ -72,7 +84,7 @@ public class Run {
         delayP.add(delay);
         delayP.add(new JLabel("ms"));
         middle.add(delayP);
-        JButton start = new JButton("Start/Stop");
+        start = new JButton("Start/Stop");
         middle.add(start);
         panel.add(middle);
         main.add(panel);
@@ -90,24 +102,45 @@ public class Run {
         });
         next.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                pressResult(main);
+                start.setEnabled(false);
+                pressResult();
+            }
+        });
+        start.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                starter();
             }
         });
 
     }
 
-    public void pressResult(JFrame main) {
+    public void starter() {
+        running = !running;
+        runer.setDelay(delay.getNumber());
+        if (running) {
+            next.setEnabled(false);
+            ping();
+            runer.start();
+        } else {
+            runer.stop();
+            next.setEnabled(true);
+            
+        }
+    }
+    public void pressResult() {
         int delayTime = delay.getNumber();
-        ping(main);
+        ping();
         Timer timer = new Timer(delayTime, null);
         timer.addActionListener(new ActionListener() {
             int count = times.getNumber() - 1;
             public void actionPerformed(ActionEvent e) {
                 if (count <= 0) {
                     timer.stop();
+                    start.setEnabled(true);
                 } else {
-                    if (ping(main)) {
+                    if (ping()) {
                         timer.stop();
+                        start.setEnabled(true);
                     }
                 }
                 count--;
@@ -115,8 +148,7 @@ public class Run {
         });
         timer.start();
     }
-
-    public boolean ping(JFrame main) {
+    public boolean ping() {
         if (popWarn) {
             if (incrementAndCheck()) {
                 if (SetupPop.stableMode(main)) {
