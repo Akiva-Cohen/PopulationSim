@@ -1,7 +1,6 @@
 import javax.swing.*;
-import javax.swing.event.DocumentListener;
-
 import java.awt.*;
+
 public class StartOptions extends JPanel {
     JTextField total;
     JTextField adult;
