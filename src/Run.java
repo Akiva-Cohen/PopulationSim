@@ -16,11 +16,7 @@ public class Run {
     IntField times;
     IntField delay;
     JPanel inP;
-    boolean counting;
-    boolean running;
     public Run(int adultSpan, int childSpan, int adults, int children, int factor) {
-        counting = false;
-        running = false;
         popWarn = true;
         adultArr = new int[adultSpan];
         childArr = new int[childSpan];
@@ -76,6 +72,8 @@ public class Run {
         delayP.add(delay);
         delayP.add(new JLabel("ms"));
         middle.add(delayP);
+        JButton start = new JButton("Start/Stop");
+        middle.add(start);
         panel.add(middle);
         main.add(panel);
         main.pack();
@@ -92,12 +90,10 @@ public class Run {
         });
         next.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (!running) {
-                    counting = true;
-                    pressResult(main);
-                }
+                pressResult(main);
             }
         });
+
     }
 
     public void pressResult(JFrame main) {
@@ -109,7 +105,6 @@ public class Run {
             public void actionPerformed(ActionEvent e) {
                 if (count <= 0) {
                     timer.stop();
-                    counting = false;
                 } else {
                     if (ping(main)) {
                         timer.stop();

@@ -1,3 +1,4 @@
+import java.text.NumberFormat;
 import java.text.ParseException;
 
 import javax.swing.*;
@@ -5,17 +6,21 @@ import javax.swing.text.*;
 public class IntField extends JFormattedTextField {
     public IntField(int start, int min) {
         super();
-        NumberFormatter inter = new NumberFormatter();
+        NumberFormatter inter = new NumberFormatter(NumberFormat.getIntegerInstance());
         inter.setValueClass(Integer.class);
         inter.setAllowsInvalid(false);
         inter.setMinimum(min);
-        setFormatter(inter);
-        setText(Integer.toString(start));
+
+        AbstractFormatterFactory factory = new DefaultFormatterFactory(inter);
+        setFormatterFactory(factory);
+        setValue(start);
     }
     public int getNumber() {
         try {
             commitEdit();
-        } catch (ParseException e) {}
+        } catch (ParseException e) {
+            return 0;
+        }
         return (int)getValue();
     }
 }
