@@ -5,6 +5,9 @@ public class StartNums extends JPanel {
     JTextField children;
     JTextField factor;
     boolean listen;
+    public StartNums() {
+        this(0,0,0);
+    }
     public StartNums(int adultsI, int childrenI, int factorI) {
         super(new GridLayout(2,3));
         listen = true;
@@ -18,10 +21,6 @@ public class StartNums extends JPanel {
         add(children);
         add(factor);
     }
-    public StartNums() {
-        this(0,0,1);
-    }
-
 
     public boolean hasAdults() {
         try {

@@ -5,6 +5,7 @@ public class SetupPop extends JOptionPane{
     JPanel panel;
     StartOptions spans;
     StartNums counts;
+    
     public SetupPop() {
         super();
         panel = new JPanel(new GridLayout(2,1));
