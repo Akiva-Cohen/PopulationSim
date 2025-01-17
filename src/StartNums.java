@@ -6,7 +6,7 @@ public class StartNums extends JPanel {
     JTextField factor;
     boolean listen;
     public StartNums() {
-        this(0,0,0);
+        this(35,10,1);
     }
     public StartNums(int adultsI, int childrenI, int factorI) {
         super(new GridLayout(2,3));

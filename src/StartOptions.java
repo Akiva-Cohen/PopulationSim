@@ -12,7 +12,7 @@ public class StartOptions extends JPanel {
     int previousEdit = 0;
     int previousPrevious = 0;
     public StartOptions() {
-        this(2,1,1);
+        this(4,2,2);
     }
     public StartOptions(int totalI, int adultI, int childI) {
         super(new GridLayout(2,3));
